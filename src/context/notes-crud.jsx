@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
-import { BASE_URL } from "../utils/axios-instance";
+import { BASE_URL } from "../../utils/axios-instance";
 
 export const NotesCrud = createContext();
 
