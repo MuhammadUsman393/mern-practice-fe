@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { BASE_URL } from "../utils/axios-instance";
+import { BASE_URL } from "../../utils/axios-instance";
 
 const Form = () => {
   const [email, setEmail] = useState("");
