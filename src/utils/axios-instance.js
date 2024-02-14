@@ -1,1 +1,1 @@
-export const BASE_URL = "https://mern-practice-be.vercel.app";
+export const BASE_URL = "https://real-jade-eagle-wrap.cyclic.app";

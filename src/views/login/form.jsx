@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../utils/axios-instance";
 
 const Form = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await fetch(`http://localhost:8008/api/auth/login-user`, {
+      const resp = await fetch(`${BASE_URL}/api/auth/login-user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,9 +19,6 @@ const Form = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      if (!resp.ok) {
-        throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
-      }
       const json = await resp.json();
       if (json.authToken) {
         localStorage.setItem("token", json.authToken);
@@ -67,7 +65,6 @@ const Form = () => {
             className={`rounded-[12px] w-full p-3 border-2 border-black placeholder-black focus:outline-none hover:shadow-[7px_5px_4px_0px_#dcdcdc]`}
             type="password"
             required
-            minLength={5}
           />
           <button
             type="submit"

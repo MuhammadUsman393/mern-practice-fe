@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
+import { BASE_URL } from "../utils/axios-instance";
 
 export const NotesCrud = createContext();
 
 export const NotesProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
-  const host = "http://localhost:8008";
-
   const getAllNotes = async () => {
     try {
-      const resp = await fetch(`${host}/api/notes/fetch-all-notes`, {
+      const resp = await fetch(`${BASE_URL}/api/notes/fetch-all-notes`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +29,7 @@ export const NotesProvider = ({ children }) => {
 
   const addNotes = async (title, description, tag) => {
     try {
-      const resp = await fetch(`${host}/api/notes/add-note`, {
+      const resp = await fetch(`${BASE_URL}/api/notes/add-note`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +49,7 @@ export const NotesProvider = ({ children }) => {
 
   const updateNotes = async (id, title, description, tag) => {
     try {
-      const resp = await fetch(`${host}/api/notes/update-note/${id}`, {
+      const resp = await fetch(`${BASE_URL}/api/notes/update-note/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +69,7 @@ export const NotesProvider = ({ children }) => {
 
   const deleteNote = async (id) => {
     try {
-      const resp = await fetch(`${host}/api/notes/delete-note/${id}`, {
+      const resp = await fetch(`${BASE_URL}/api/notes/delete-note/${id}`, {
         method: "DELETE",
         headers: {
           "auth-token": `${localStorage.getItem("token")}`,

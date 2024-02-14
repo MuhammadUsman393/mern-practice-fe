@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../utils/axios-instance";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await fetch(`http://localhost:8008/api/auth/create-user`, {
+      const resp = await fetch(`${BASE_URL}/api/auth/create-user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,9 +20,6 @@ const Form = () => {
         body: JSON.stringify({ name, email, password }),
       });
 
-      if (!resp.ok) {
-        throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
-      }
       const json = await resp.json();
       if (json.authToken) {
         localStorage.setItem("token", json.authToken);
